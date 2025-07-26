@@ -18,6 +18,15 @@ router.post("/info", async (req, res) => {
 	}
 });
 
+router.post("/isuserid", async (req, res) => {
+	const user = await User.findOne({ user_id: req.body.user_id });
+	if(!user){
+	   return res.status(200).send({isstatus: false});
+	}else{
+	   return res.status(200).send({isstatus:true});
+	}
+});
+
 router.get('/users', async (req,res)=>{
   try {
     const users = await User.find({}, 'user_id name');
